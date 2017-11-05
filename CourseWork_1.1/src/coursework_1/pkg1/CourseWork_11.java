@@ -24,6 +24,35 @@ public class CourseWork_11 {
         println("Welcome to the program");
         println("Press 1 to access 2D shapes and press 2 to access 3D shapes");
         int choice_1 = s.nextInt();
+        if (choice_1==1){
+          println("Which one of the 2D shapes do you want to access");
+          println("For rectangle press 1, press 2 for circle, press 3 for triangle");
+          int choice_2 = s.nextInt();
+          if (choice_2==1:){
+            println("Name of the rectangle: ");
+            String name1 = s.next();
+            println("Length of the rectangle: ");
+            double len = nextDouble();
+            println("Width of the rectangle: ");
+            double brd = nextDouble();
+            shapes.add(new Rectangle(name1,len,brd));
+          }
+          else if (choice_2 ==2:){
+            println("Name of the circle: ");
+            String name2 = s.next();
+            println("Radius of the circle: ");
+            double radius = s.next();
+            shapes.add(new Circle(name2,radius));
+          }
+          else if (choice_2 ==3){
+            /* Add the triangle functions in here*/
+          }
+          else{
+            println("Please enter a valid option");
+          }
+          
+
+        }
         shapes.add(new Rectangle("Rectangle one", 10, 8));
         shapes.add(new Rectangle("Rectangle two", 20, 5));
         shapes.add(new Circle("Circle one", 10));
