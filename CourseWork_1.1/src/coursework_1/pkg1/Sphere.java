@@ -15,15 +15,15 @@ public class Sphere extends ThreeDShapes{
         super(name);
         _radius = radius;
     }
-    
+
     @Override
     public double getVolume(){
         return 4/3*Math.PI*Math.pow(_radius, 3);
     }
-    
+
     @Override
     public double getSA(){
         return 4*Math.PI*Math.pow(_radius, 2);
     }
-    
+
 }
