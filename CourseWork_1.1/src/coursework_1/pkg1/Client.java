@@ -69,6 +69,18 @@ public class Client {
           println("Radius of the Sphere: ");
           double r1 = s.nextDouble();
           shapes.add(new Sphere(name4,r1));
+          println("To calculate the Volume press 1, And press 2 to calculate Surface Area");
+          int choice_5 = s.nextInt();
+          if (choice_5==1){
+
+          }
+          else if (choice_5==2){
+
+          }
+          else{
+            println("Please enter a valid option");
+            return;
+          }
         }
         else if (choice_3==2){
           println("Name of the Cylinder: ");
@@ -78,7 +90,21 @@ public class Client {
           println("Height of the Cylinder: ");
           double h1 = s.nextDouble();
           shapes.add(new Cylinder(name5,r2,h1));
-        }
+          println("To calculate the Volume press 1, And press 2 to calculate Surface Area");
+          int choice_5 = s.nextInt();
+          for(final Shape shape:shapes){
+            if (choice_5==1){
+
+            }
+            else if (choice_5==2){
+
+            }
+            else{
+              println("Please enter a valid option");
+              return;
+            }
+          }
+
         else{
           println("Please enter a valid option");
           return;
