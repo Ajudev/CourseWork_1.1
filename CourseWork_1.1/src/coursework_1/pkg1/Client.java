@@ -27,7 +27,7 @@ public class Client {
         println("Which one of the 2D shapes do you want to access");
         println("For rectangle press 1, press 2 for circle, press 3 for triangle");
         int choice_2 = s.nextInt();
-        if (choice_2==1:){
+        if (choice_2==1){
           println("Name of the rectangle: ");
           String name1 = s.next();
           println("Length of the rectangle: ");
@@ -36,7 +36,7 @@ public class Client {
           double brd = nextDouble();
           shapes.add(new Rectangle(name1,len,brd));
         }
-        else if (choice_2 ==2:){
+        else if (choice_2 ==2){
           println("Name of the circle: ");
           String name2 = s.next();
           println("Radius of the circle: ");
@@ -53,7 +53,7 @@ public class Client {
           double base = s.nextDouble();
           println("Length of the height from the base of the Triangle: ");
           double height = s.nextDouble();
-          shapes.add(new Triangle(name3,side1,side2,side3,base,height));
+          shapes.add(new Triangle(name3,side1,side2,base,height));
         }
         else{
           println("Please enter a valid option");
@@ -103,7 +103,7 @@ public class Client {
               println("Please enter a valid option");
               return;
             }
-          }
+          }}
 
         else{
           println("Please enter a valid option");
@@ -133,6 +133,5 @@ public class Client {
           System.out.println("");
         }
 
-    }
-
+  }
 }
