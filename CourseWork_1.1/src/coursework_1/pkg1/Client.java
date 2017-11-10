@@ -26,7 +26,8 @@ public class Client {
         int port = 8000;
         String host = "localhost";
         Socket socket;
-        LinkedList<Shape> shapes = new LinkedList();
+        ArrayList<TwoDShapes> shapes = new ArrayList();
+        ArrayList<ThreeDShapes> shapes1 = new ArrayList();
         Scanner s  =new Scanner(System.in);
         System.out.println("Welcome to the program");
         System.out.println("Press 1 to access 2D shapes and press 2 to access 3D shapes");
@@ -132,7 +133,7 @@ public class Client {
                 String name4 = s.next();
                 System.out.println("Radius of the Sphere: ");
                 double r1 = s.nextDouble();
-                shapes.add(new Sphere(name4,r1));
+                shapes1.add(new Sphere(name4,r1));
                 try{
                     ArrayList in = new ArrayList(); 
                     outputToServer.writeObject(shapes);
@@ -157,7 +158,7 @@ public class Client {
                 double r2 = s.nextDouble();
                 System.out.println("Height of the Cylinder: ");
                 double h1 = s.nextDouble();
-                shapes.add(new Cylinder(name5,r2,h1));
+                shapes1.add(new Cylinder(name5,r2,h1));
                 try{
                     ArrayList in = new ArrayList(); 
                     outputToServer.writeObject(shapes);
