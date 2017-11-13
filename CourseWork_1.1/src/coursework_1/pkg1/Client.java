@@ -25,7 +25,6 @@ public class Client {
         ObjectInputStream fromServer = null;
         int port = 8000;
         String host = "localhost";
-        Socket socket;
         ArrayList<TwoDShapes> shapes = new ArrayList();
         ArrayList<ThreeDShapes> shapes1 = new ArrayList();
         Scanner s  =new Scanner(System.in);
@@ -33,7 +32,7 @@ public class Client {
         System.out.println("Press 1 to access 2D shapes and press 2 to access 3D shapes");
         int choice_1 = s.nextInt();
         try{
-            socket = new Socket(host,port);
+            Socket socket = new Socket(host,port);
             outputToServer = new ObjectOutputStream(socket.getOutputStream());
             fromServer = new ObjectInputStream(socket.getInputStream());
         }

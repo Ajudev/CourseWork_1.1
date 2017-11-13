@@ -5,11 +5,14 @@
  */
 package coursework_1.pkg1;
 
+
+import java.io.Serializable;
+
 /**
  *
  * @author M00609218
  */
-public abstract class Shape {
+public abstract class Shape implements Serializable {
     final String _name;
     
     public Shape(String name){
