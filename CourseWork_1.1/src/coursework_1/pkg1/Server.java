@@ -21,7 +21,7 @@ public class Server {
     public static void main(String[] args) {
             try{
                 int port = 8000;
-                ServerSocket serverSocket = new ServerSocket(8000);
+                ServerSocket serverSocket = new ServerSocket(port);
                
                 
 
