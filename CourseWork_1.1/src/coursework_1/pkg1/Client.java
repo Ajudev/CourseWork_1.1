@@ -8,7 +8,6 @@ package coursework_1.pkg1;
 import java.io.*;
 import java.net.*;
 import java.util.*;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -20,13 +19,12 @@ public class Client {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         ObjectOutputStream outputToServer = null;
         ObjectInputStream fromServer = null;
         int port = 8000;
         String host = "localhost";
-        ArrayList<TwoDShapes> shapes = new ArrayList();
-        ArrayList<ThreeDShapes> shapes1 = new ArrayList();
+        ArrayList shapes = new ArrayList();
         Scanner s  =new Scanner(System.in);
         try{
             Socket socket = new Socket(host,port);
@@ -38,11 +36,11 @@ public class Client {
         }
         while(true){
             System.out.println("Welcome to the program");
-            System.out.println("Press 1 to access 2D shapes, press 2 to access 3D shapes and press 3 to exit the program");
+            System.out.println("Press 1 to create 2D Shapes \n Press 2 to create 3D Shapes \n Press 3 to recieve shapes from server \n Press 4 to exit the program \n");
             int choice_1 = s.nextInt();
             if (choice_1==1){
                 System.out.println("Which one of the 2D shapes do you want to access");
-                System.out.println("For rectangle press 1, press 2 for circle, press 3 for triangle");
+                System.out.println("For rectangle press 1, press 2 for circle, press 3 for triangle, press 4 to exit the program");
                 int choice_2 = s.nextInt();
                 if (choice_2==1){
                     System.out.println("Name of the rectangle: ");
@@ -51,48 +49,42 @@ public class Client {
                     double len = s.nextDouble();
                     System.out.println("Width of the rectangle: ");
                     double brd = s.nextDouble();
-                    shapes.add(new Rectangle(name1,len,brd));
-                    try{
-                        ArrayList in = new ArrayList(); 
-                        outputToServer.writeObject(shapes);
-                        outputToServer.flush();
-                        in = (ArrayList) fromServer.readObject();
-                        double area = (double) in.get(0);
-                        double perimeter = (double) in.get(1);
+                    Rectangle r = new Rectangle(name1,len,brd);
+                    shapes.add(r);
+                    double area = 0,perimeter= 0;
+                    try{ 
+                        area = r.getArea();
+                        perimeter = r.getPerimeter();
+                        r.displayDescription();
                         System.out.println("The area of rectangle is: "+area);
                         System.out.println("The perimeter of rectangle is: "+perimeter);
+                        outputToServer.writeObject(r);
+                        outputToServer.flush();
+                        
+                    } catch(Exception e){
+                        e.printStackTrace();
                     }
-                    catch (IOException ex){
-                        System.err.println(ex);
-                    }
-                    catch (ClassNotFoundException ex){
-                        System.err.println(ex);
-                    }
-                    continue;
+
+                   
                 }
                 else if (choice_2 ==2){
                     System.out.println("Name of the circle: ");
                     String name2 = s.next();
                     System.out.println("Radius of the circle: ");
                     double radius = s.nextDouble();
-                    shapes.add(new Circle(name2,radius));
+                    double area=0,perimeter=0;
+                    Circle c = new Circle(name2,radius);
                     try{
-                        ArrayList in = new ArrayList(); 
-                        outputToServer.writeObject(shapes);
-                        outputToServer.flush();
-                        in = (ArrayList) fromServer.readObject();
-                        double area = (double) in.get(0);
-                        double perimeter = (double) in.get(1);
+                        area=c.getArea();
+                        perimeter=c.getPerimeter();
+                        c.displayDescription();
                         System.out.println("The area of circle is: "+area);
                         System.out.println("The perimeter of circle is: "+perimeter);
+                        outputToServer.writeObject(c);
+                        outputToServer.flush();
+                    } catch(Exception e){
+                        e.printStackTrace();
                     }
-                    catch (IOException ex){
-                        System.err.println(ex);
-                    }
-                    catch (ClassNotFoundException ex){
-                        System.err.println(ex);
-                    }
-                    continue;
                 }
                 else if (choice_2 ==3){
                     System.out.println("Name of the Triangle: ");
@@ -104,55 +96,46 @@ public class Client {
                     double base = s.nextDouble();
                     System.out.println("Length of the height from the base of the Triangle: ");
                     double height = s.nextDouble();
-                    shapes.add(new Triangle(name3,side1,side2,base,height));
+                    Triangle t = new Triangle(name3,side1,side2,base,height);
+                    double area=0,perimeter=0;
                     try{
-                        ArrayList in = new ArrayList(); 
-                        outputToServer.writeObject(shapes);
-                        outputToServer.flush();
-                        in = (ArrayList) fromServer.readObject();
-                        double area = (double) in.get(0);
-                        double perimeter = (double) in.get(1);
+                        area = t.getArea();
+                        perimeter = t.getPerimeter();
+                        t.displayDescription();
                         System.out.println("The area of triangle is: "+area);
                         System.out.println("The perimeter of triangle is: "+perimeter);
+                        outputToServer.writeObject(t);
+                        outputToServer.flush();
                     }
-                    catch (IOException ex){
-                        System.err.println(ex);
+                    catch (Exception e){
+                        e.printStackTrace();
                     }
-                    catch (ClassNotFoundException ex){
-                        System.err.println(ex);
-                    }
-                    continue;
                 }
-                else{
-                    System.out.println("Please enter a valid option");
+                else if(choice_2 == 4){
+                    System.out.println("Thank you for using the program");
+                    System.exit(0);
                 }
             }
             else if (choice_1==2){
-                System.out.println("Press 1 to access Sphere, Press 2 to access Cylinder: ");
+                System.out.println("Press 1 to access Sphere, Press 2 to access Cylinder and Press 3 to exit the program: ");
                 int choice_3 = s.nextInt();
                 if (choice_3==1){
                     System.out.println("Name of the Sphere: ");
                     String name4 = s.next();
                     System.out.println("Radius of the Sphere: ");
                     double r1 = s.nextDouble();
-                    shapes1.add(new Sphere(name4,r1));
+                    Sphere sp = new Sphere(name4,r1);
                     try{
-                        ArrayList in = new ArrayList(); 
-                        outputToServer.writeObject(shapes);
-                        outputToServer.flush();
-                        in = (ArrayList) fromServer.readObject();
-                        double volume = (double) in.get(0);
-                        double SA = (double) in.get(1);
+                        double volume = sp.getVolume();
+                        double SA = sp.getSA();
                         System.out.println("The volume of Sphere is: "+volume);
                         System.out.println("The Surface Area of rectangle is: "+SA);
+                        outputToServer.writeObject(sp);
+                        outputToServer.flush();
                     }
-                    catch (IOException ex){
-                        System.err.println(ex);
+                    catch (Exception e){
+                        e.printStackTrace();
                     }
-                    catch (ClassNotFoundException ex){
-                        System.err.println(ex);
-                    }
-                    continue;
                 }
                 else if (choice_3==2){
                     System.out.println("Name of the Cylinder: ");
@@ -161,32 +144,37 @@ public class Client {
                     double r2 = s.nextDouble();
                     System.out.println("Height of the Cylinder: ");
                     double h1 = s.nextDouble();
-                    shapes1.add(new Cylinder(name5,r2,h1));
+                    Cylinder cy = new Cylinder(name5,r2,h1);
                     try{
-                        ArrayList in = new ArrayList(); 
-                        outputToServer.writeObject(shapes);
-                        outputToServer.flush();
-                        in = (ArrayList) fromServer.readObject();
-                        double volume = (double) in.get(0);
-                        double SA = (double) in.get(1);
+                        double volume = cy.getVolume();
+                        double SA = cy.getSA();
                         System.out.println("The volume of Cylinder is: "+volume);
                         System.out.println("The Surface Area of Cylinder is: "+SA);
+                        outputToServer.writeObject(cy);
+                        outputToServer.flush();
                     }
-                    catch (IOException ex){
-                        System.err.println(ex);
+                    catch (Exception e){
+                        e.printStackTrace();
                     }
-                    catch (ClassNotFoundException ex){
-                        System.err.println(ex);
-                    }
-                    continue;
                 }
-                else{
-                    System.out.println("Please enter a valid option");
+                else if(choice_3 == 3){
+                    System.out.println("Thank you for using the program");
+                    System.exit(0);
                 }
             }
-            if(choice_1==3) {
+            else if(choice_1==3){
+                try{
+                    ArrayList in = (ArrayList)fromServer.readObject();
+                    for(Object str:in){
+                        System.out.println(str);
+                    }
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            else if(choice_1==4) {
                 System.out.println("Thank you for using the program");
-                break;
+                System.exit(0);
             }
             else{
                 System.out.println("Please enter a valid option");

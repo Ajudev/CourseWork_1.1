@@ -18,7 +18,7 @@ public class Sphere extends ThreeDShapes{
 
     @Override
     public double getVolume(){
-        return 4/3*Math.PI*Math.pow(_radius, 3);
+        return 1.3333*Math.PI*_radius*_radius*_radius;
     }
 
     @Override
