@@ -22,6 +22,6 @@ public abstract class Shape implements Serializable {
     
 
     public void displayDescription(){
-        System.out.println("I'm a shape named "+_name);
+        System.out.println("I'm a shape named "+" "+_name);
     }
 }

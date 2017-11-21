@@ -128,6 +128,7 @@ public class Client {
                     try{
                         double volume = sp.getVolume();
                         double SA = sp.getSA();
+                        sp.displayDescription();
                         System.out.println("The volume of Sphere is: "+volume);
                         System.out.println("The Surface Area of rectangle is: "+SA);
                         outputToServer.writeObject(sp);
@@ -148,6 +149,7 @@ public class Client {
                     try{
                         double volume = cy.getVolume();
                         double SA = cy.getSA();
+                        cy.displayDescription();
                         System.out.println("The volume of Cylinder is: "+volume);
                         System.out.println("The Surface Area of Cylinder is: "+SA);
                         outputToServer.writeObject(cy);
